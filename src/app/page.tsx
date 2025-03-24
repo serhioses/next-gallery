@@ -1,7 +1,27 @@
+const mockUrls = [
+    'https://1rd1hl99eo.ufs.sh/f/emYfl2EusWQcQWebuynmxC4pJLFEw5VzuRPfatn0SWkAX12o',
+    'https://1rd1hl99eo.ufs.sh/f/emYfl2EusWQcMYL4u8Qs4PxKrVkTSYQCl6bHzfcdJuE3MjhR',
+    'https://1rd1hl99eo.ufs.sh/f/emYfl2EusWQcBtLOJWv6Rn8keyO5utG37qPEZdQ9oYADjizX',
+    'https://1rd1hl99eo.ufs.sh/f/emYfl2EusWQcsqjgPwYUc7dOvNKnyCJ6TW34j1IPVioFqZwh',
+    'https://1rd1hl99eo.ufs.sh/f/emYfl2EusWQcZrJKR99VXGP1U7tbpAuFTDjs9KISkZiMWhnL',
+];
+
+const mockImages = mockUrls.map((url, index) => {
+    return { id: index + 1, url };
+});
+
 export default function HomePage() {
     return (
-        <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-            Gallery in progress
+        <main className="">
+            <div className="flex flex-wrap gap-4">
+                {mockImages.map((image) => {
+                    return (
+                        <div key={image.id} className="w-48">
+                            <img src={image.url} alt="" />
+                        </div>
+                    );
+                })}
+            </div>
         </main>
     );
 }
