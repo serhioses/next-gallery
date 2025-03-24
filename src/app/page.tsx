@@ -12,6 +12,9 @@ const mockImages = mockUrls.map((url, index) => {
     return { id: index + 1, url };
 });
 
+// TODO: See later if replacing with `dynamic = "force-dynamic"` suits better
+export const revalidate = 300;
+
 export default async function HomePage() {
     const posts = await db.query.posts.findMany();
 
