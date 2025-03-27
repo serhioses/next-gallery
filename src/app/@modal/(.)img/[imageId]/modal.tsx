@@ -23,11 +23,11 @@ export function Modal({ children }: TModalProps) {
     return createPortal(
         <dialog
             ref={dialogRef}
-            className="h-dvh max-h-full w-screen max-w-full bg-zinc-900/50"
+            className="h-dvh max-h-full w-screen max-w-full bg-zinc-900/90 text-white"
             onClose={handleDismiss}
         >
             {children}
-            <button className="close-button" onClick={handleDismiss} />
+            {/* <button className="close-button" onClick={handleDismiss} /> */}
         </dialog>,
         document.getElementById('modal-root')!,
     );

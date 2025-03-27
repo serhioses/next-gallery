@@ -6,6 +6,6 @@
         'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-body {
+html {
     @apply bg-black text-white;
 }
