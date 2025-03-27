@@ -20,3 +20,32 @@ export async function getMyImages() {
 
     return images;
 }
+
+export async function getImage(imageId: number) {
+    const user = await auth();
+
+    if (!user.userId) {
+        throw new Error('Unauthorized');
+    }
+
+    // const image = await db.query.images.findFirst({
+    //     where(fields, { and, eq }) {
+    //         return and(eq(fields.userId, user.userId), eq(fields.id, imageId));
+    //     },
+    // });
+    const image = await db.query.images.findFirst({
+        where(fields, { eq }) {
+            return eq(fields.id, imageId);
+        },
+    });
+
+    if (image?.userId !== user.userId) {
+        throw new Error('Unauthorized');
+    }
+
+    if (!image) {
+        throw new Error('Image not found');
+    }
+
+    return image;
+}
