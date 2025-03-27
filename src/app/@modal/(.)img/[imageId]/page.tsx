@@ -1,4 +1,5 @@
-import { getImage } from '~/server/queries';
+import { Modal } from '~/app/@modal/(.)img/[imageId]/modal';
+import { FullImagePage } from '~/components/FullImagePage';
 
 type TPageProps = {
     params: Promise<{ imageId: string }>;
@@ -12,11 +13,9 @@ export default async function Page(props: TPageProps) {
         throw new Error('Invalid image id');
     }
 
-    const image = await getImage(idAsNumber);
-
     return (
-        <div>
-            <img src={image.url} alt="" className="w-96" />
-        </div>
+        <Modal>
+            <FullImagePage imageId={idAsNumber} />
+        </Modal>
     );
 }
