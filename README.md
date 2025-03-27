@@ -13,6 +13,8 @@
 - [x] Use next Image component
 - [x] Error management (w/ Sentry)
 - [x] Routing/image page (parallel routing)
+- [x] Make custom upload button
+- [ ] Add shadcd toast for upldoading messages
 - [ ] Delete button (w/ Server actions)
 - [ ] Analytics (posthog)
 - [ ] Ratelimiting (upstash)

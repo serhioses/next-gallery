@@ -25,11 +25,13 @@ async function Images() {
         <div className="flex flex-wrap gap-4 p-4">
             {images.map((image) => {
                 return (
-                    <div key={image.id} className="relative flex h-48 w-48 flex-col">
-                        <Link href={`/img/${image.id}`}>
+                    <div key={image.id} className="flex h-48 w-48 flex-col">
+                        <Link href={`/img/${image.id}`} className="relative block h-full">
                             <Image src={image.url} alt="" fill={true} />
                         </Link>
-                        <div>{image.name}</div>
+                        <div className="truncate" title={image.name}>
+                            {image.name}
+                        </div>
                     </div>
                 );
             })}
