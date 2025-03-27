@@ -5,6 +5,7 @@ import { Geist } from 'next/font/google';
 import { ClerkProvider } from '@clerk/nextjs';
 import { NextSSRPlugin } from '@uploadthing/react/next-ssr-plugin';
 import { extractRouterConfig } from 'uploadthing/server';
+import { Toaster } from '~/components/ui/sonner';
 import { ourFileRouter } from '~/app/api/uploadthing/core';
 import TopNav from '~/app/_components/TopNav';
 
@@ -24,7 +25,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode; modal: React.ReactNode }>) {
     return (
         <ClerkProvider>
-            <html lang="en" className={`${geist.variable}`}>
+            <html lang="en" className={`${geist.variable} dark`}>
                 <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
                 <body>
                     <div className="grid h-screen grid-rows-[auto_1fr]">
@@ -33,6 +34,7 @@ export default function RootLayout({
                     </div>
                     {modal}
                     <div id="modal-root" />
+                    <Toaster />
                 </body>
             </html>
         </ClerkProvider>

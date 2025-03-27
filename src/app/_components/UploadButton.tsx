@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { generatePermittedFileTypes } from 'uploadthing/client';
+import { toast } from 'sonner';
 import clsx from 'clsx';
 import { UploadSVGIcon } from '~/components/CustomIcons';
 import { routeRegistry, useUploadThing } from '~/utils/uploadthing';
@@ -40,14 +41,24 @@ function useUploadFilesInputProps(endpoint: keyof typeof routeRegistry) {
     const router = useRouter();
     const { isUploading, startUpload, routeConfig } = useUploadThing(endpoint, {
         onBeforeUploadBegin(files) {
-            console.log('onBeforeUploadBegin');
+            toast.loading(`Uploading ${files.length} file${files.length > 1 ? 's' : ''} ...`, {
+                duration: 1000 * 60,
+                id: 'uploading-files-toast',
+            });
             return files;
         },
         onClientUploadComplete() {
-            console.log('onClientUploadComplete');
+            toast.dismiss('uploading-files-toast');
             router.refresh();
         },
         onUploadError(err) {
+            toast.dismiss('uploading-files-toast');
+            toast.error(
+                <div className="text-red-500">Error during file uploading: {err.message}</div>,
+                {
+                    duration: 1000 * 5,
+                },
+            );
             console.log('upload error:', err);
         },
     });

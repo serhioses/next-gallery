@@ -27,7 +27,12 @@ async function Images() {
                 return (
                     <div key={image.id} className="flex h-48 w-48 flex-col">
                         <Link href={`/img/${image.id}`} className="relative block h-full">
-                            <Image src={image.url} alt="" fill={true} />
+                            <Image
+                                src={image.url}
+                                alt=""
+                                fill={true}
+                                sizes="(min-width: 0px) 192px"
+                            />
                         </Link>
                         <div className="truncate" title={image.name}>
                             {image.name}
