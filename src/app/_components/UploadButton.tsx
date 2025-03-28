@@ -58,6 +58,7 @@ function useUploadFilesInputProps(endpoint: keyof typeof routeRegistry) {
             router.refresh();
         },
         onUploadError(err) {
+            posthog.capture('upload_error', { err });
             toast.dismiss('uploading-files-toast');
             toast.error(
                 <div className="text-red-500">Error during file uploading: {err.message}</div>,
