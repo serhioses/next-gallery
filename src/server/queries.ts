@@ -1,6 +1,8 @@
 import { auth } from '@clerk/nextjs/server';
+import { and, eq } from 'drizzle-orm';
 import 'server-only';
 import { db } from '~/server/db';
+import { images } from './db/schema';
 
 export async function getMyImages() {
     const user = await auth();
@@ -48,4 +50,16 @@ export async function getImage(imageId: number) {
     }
 
     return image;
+}
+
+export async function deleteImage(imageId: number) {
+    const user = await auth();
+
+    if (!user.userId) {
+        throw new Error('Unauthorized');
+    }
+
+    await db.delete(images).where(and(eq(images.id, imageId), eq(images.userId, user.userId)));
+
+    return user.userId;
 }

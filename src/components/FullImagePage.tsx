@@ -1,5 +1,7 @@
 import { clerkClient } from '@clerk/nextjs/server';
 import { getImage } from '~/server/queries';
+import { Button } from './ui/button';
+import { deleteImageAction } from '~/server/actions';
 
 type TFullImagePageProps = { imageId: number };
 
@@ -7,6 +9,7 @@ export async function FullImagePage(props: TFullImagePageProps) {
     const image = await getImage(props.imageId);
     const client = await clerkClient();
     const uploaderInfo = await client.users.getUser(image.userId);
+    const deleteImageWithId = deleteImageAction.bind(null, image.id);
 
     return (
         <div className="flex h-full w-full">
@@ -23,6 +26,11 @@ export async function FullImagePage(props: TFullImagePageProps) {
                     <span>Created at:</span>
                     <span>{new Date(image.createdAt).toLocaleDateString()}</span>
                 </div>
+                <form action={deleteImageWithId} className="p-2">
+                    <Button variant="destructive" className="cursor-pointer">
+                        Delete
+                    </Button>
+                </form>
             </div>
         </div>
     );

@@ -21,6 +21,10 @@ export default async function HomePage() {
 async function Images() {
     const images = await getMyImages();
 
+    if (!images.length) {
+        return <p>No images yet</p>;
+    }
+
     return (
         <div className="flex flex-wrap gap-4 p-4">
             {images.map((image) => {
