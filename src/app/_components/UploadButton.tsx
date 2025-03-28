@@ -6,6 +6,8 @@ import { toast } from 'sonner';
 import clsx from 'clsx';
 import { UploadSVGIcon } from '~/components/CustomIcons';
 import { routeRegistry, useUploadThing } from '~/utils/uploadthing';
+import { usePostHog } from 'posthog-js/react';
+import { useUser } from '@clerk/nextjs';
 
 export function UploadButton() {
     const { accept, multiple, isUploading, onChange } = useUploadFilesInputProps(
@@ -39,8 +41,12 @@ export function UploadButton() {
 
 function useUploadFilesInputProps(endpoint: keyof typeof routeRegistry) {
     const router = useRouter();
+    const { user } = useUser();
+    const posthog = usePostHog();
+
     const { isUploading, startUpload, routeConfig } = useUploadThing(endpoint, {
         onBeforeUploadBegin(files) {
+            posthog.capture('upload_start', { userId: user?.id, name: user?.fullName });
             toast.loading(`Uploading ${files.length} file${files.length > 1 ? 's' : ''} ...`, {
                 duration: 1000 * 60,
                 id: 'uploading-files-toast',

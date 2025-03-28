@@ -15,6 +15,8 @@
 - [x] Routing/image page (parallel routing)
 - [x] Make custom upload button
 - [x] Add shadcd toast for upldoading messages
-- [ ] Analytics (posthog)
+- [x] Analytics (posthog)
 - [ ] Delete button (w/ Server actions)
 - [ ] Ratelimiting (upstash)
+- [ ] Identified posthog requests
+- [ ] Improve auth flow
