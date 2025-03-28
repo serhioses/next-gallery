@@ -32,7 +32,7 @@ export const ourFileRouter = {
 
             const client = await clerkClient();
             const fullUserData = await client.users.getUser(user.userId);
-            if (!fullUserData.privateMetadata.canUpload) {
+            if (fullUserData?.privateMetadata?.canUpload !== true) {
                 throw new UploadThingError(
                     'The user does not have a permission to upload files',
                 ) as Error;
