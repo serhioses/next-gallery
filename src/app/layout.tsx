@@ -8,6 +8,7 @@ import { extractRouterConfig } from 'uploadthing/server';
 import { Toaster } from '~/components/ui/sonner';
 import { ourFileRouter } from '~/app/api/uploadthing/core';
 import TopNav from '~/app/_components/TopNav';
+import { PostHogProvider } from '~/app/_analytics/providers';
 
 export const metadata: Metadata = {
     title: 'Next gallery App',
@@ -25,18 +26,20 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode; modal: React.ReactNode }>) {
     return (
         <ClerkProvider>
-            <html lang="en" className={`${geist.variable} dark`}>
-                <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-                <body>
-                    <div className="grid h-screen grid-rows-[auto_1fr]">
-                        <TopNav />
-                        <main className="overflow-y-auto">{children}</main>
-                    </div>
-                    {modal}
-                    <div id="modal-root" />
-                    <Toaster />
-                </body>
-            </html>
+            <PostHogProvider>
+                <html lang="en" className={`${geist.variable} dark`}>
+                    <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+                    <body>
+                        <div className="grid h-screen grid-rows-[auto_1fr]">
+                            <TopNav />
+                            <main className="overflow-y-auto">{children}</main>
+                        </div>
+                        {modal}
+                        <div id="modal-root" />
+                        <Toaster />
+                    </body>
+                </html>
+            </PostHogProvider>
         </ClerkProvider>
     );
 }

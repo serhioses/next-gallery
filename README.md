@@ -14,7 +14,7 @@
 - [x] Error management (w/ Sentry)
 - [x] Routing/image page (parallel routing)
 - [x] Make custom upload button
-- [ ] Add shadcd toast for upldoading messages
-- [ ] Delete button (w/ Server actions)
+- [x] Add shadcd toast for upldoading messages
 - [ ] Analytics (posthog)
+- [ ] Delete button (w/ Server actions)
 - [ ] Ratelimiting (upstash)
