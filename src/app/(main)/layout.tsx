@@ -2,7 +2,7 @@ import '~/styles/globals.css';
 
 import { type Metadata } from 'next';
 import { Geist } from 'next/font/google';
-import { ClerkProvider, RedirectToSignIn, SignedOut } from '@clerk/nextjs';
+import { ClerkProvider } from '@clerk/nextjs';
 import { NextSSRPlugin } from '@uploadthing/react/next-ssr-plugin';
 import { extractRouterConfig } from 'uploadthing/server';
 import { Toaster } from '~/components/ui/sonner';
