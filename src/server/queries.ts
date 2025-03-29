@@ -1,6 +1,7 @@
 import { auth } from '@clerk/nextjs/server';
 import { and, eq } from 'drizzle-orm';
 import 'server-only';
+import {} from 'next/navigation';
 import { db } from '~/server/db';
 import { images } from './db/schema';
 
@@ -41,12 +42,12 @@ export async function getImage(imageId: number) {
         },
     });
 
-    if (image?.userId !== user.userId) {
-        throw new Error('Unauthorized');
-    }
-
     if (!image) {
         throw new Error('Image not found');
+    }
+
+    if (image.userId !== user.userId) {
+        throw new Error('Unauthorized');
     }
 
     return image;

@@ -1,4 +1,4 @@
-import { Modal } from '~/app/@modal/(.)img/[imageId]/modal';
+import { Modal } from '~/app/(main)/@modal/(.)img/[imageId]/modal';
 import { FullImagePage } from '~/components/FullImagePage';
 
 type TPageProps = {

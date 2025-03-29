@@ -19,4 +19,4 @@
 - [x] Delete button (w/ Server actions)
 - [x] Ratelimiting (upstash)
 - [x] Identified posthog requests
-- [ ] Improve auth flow
+- [x] Improve auth flow
