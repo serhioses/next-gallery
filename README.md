@@ -16,7 +16,7 @@
 - [x] Make custom upload button
 - [x] Add shadcd toast for upldoading messages
 - [x] Analytics (posthog)
-- [ ] Delete button (w/ Server actions)
-- [ ] Ratelimiting (upstash)
-- [ ] Identified posthog requests
+- [x] Delete button (w/ Server actions)
+- [x] Ratelimiting (upstash)
+- [x] Identified posthog requests
 - [ ] Improve auth flow
